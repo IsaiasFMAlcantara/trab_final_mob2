@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_shopping/custom/customText.dart';
+import 'package:list_shopping/control/c_firebase.dart';
 
 class CadastroDeUsuario_ extends StatefulWidget {
   const CadastroDeUsuario_({super.key});
@@ -44,6 +45,7 @@ class _CadastroDeUsuario_State extends State<CadastroDeUsuario_> {
 
   @override
   Widget build(BuildContext context) {
+    CadastrarUsuario cadastrarUsuario = CadastrarUsuario(context);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -77,6 +79,7 @@ class _CadastroDeUsuario_State extends State<CadastroDeUsuario_> {
                     height: 20,
                   ),
                   TextFormField(
+                    obscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: _senhavalida,
                     decoration: InputDecoration(
@@ -96,7 +99,10 @@ class _CadastroDeUsuario_State extends State<CadastroDeUsuario_> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cadastrarUsuario.cadastraruser(
+                          _emailvalido.text, _senhavalida.text);
+                    },
                     child: CustomText(
                       title: 'Cadastrar Usuário',
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_shopping/control/c_firebase.dart';
 import 'package:list_shopping/custom/customText.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,7 @@ class _Login_State extends State<Login_> {
 
   @override
   Widget build(BuildContext context) {
+    LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -98,7 +100,10 @@ class _Login_State extends State<Login_> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      logarBaseFirebase.logarBase(
+                          _emailvalido.text, _senhavalida.text);
+                    },
                     child: CustomText(
                       title: 'Login',
                     ),

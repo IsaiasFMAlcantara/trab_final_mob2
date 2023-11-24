@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_shopping/control/c_firebase.dart';
 import 'package:list_shopping/custom/customText.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -10,11 +11,26 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  final UserController _userController = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
+    DeslogarFirebase deslogarBaseFirebase = DeslogarFirebase();
     return Drawer(
       child: ListView(
         children: [
+          UserAccountsDrawerHeader(
+            accountName: Text(_userController.user?.displayName ?? ''),
+            accountEmail:
+            Text(_userController.user?.email ?? 'No user logged in'),
+            currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(
+                  _userController.user?.email?.isNotEmpty == true
+                      ? _userController.user!.email![0].toUpperCase()
+                      : '/',
+                  style: TextStyle(fontSize: 40.0),
+                )),
+          ),
           Card(
             child: ListTile(
               leading: Icon(
@@ -55,7 +71,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               title: CustomText(title: 'Sair'),
               onTap: () {
-                Get.toNamed('/login_');
+                deslogarBaseFirebase.deslogar();
               },
             ),
           ),

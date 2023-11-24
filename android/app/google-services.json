@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "829678490881",
+    "project_id": "listadecompras-ea610",
+    "storage_bucket": "listadecompras-ea610.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829678490881:android:12d14b5da2a457c9e03700",
+        "android_client_info": {
+          "package_name": "com.example.list_shopping"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQUQB_gf3Ltt3bGwLY1UOCtReoPKv340s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829678490881:android:1e2cb93304630bcce03700",
+        "android_client_info": {
+          "package_name": "com.example.listadecomprass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQUQB_gf3Ltt3bGwLY1UOCtReoPKv340s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

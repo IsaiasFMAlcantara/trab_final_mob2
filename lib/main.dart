@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'view/homescreen.dart';
 import 'view/login/login.dart';
@@ -8,11 +10,15 @@ import 'view/login/login_.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario_.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/login_',
       theme: FlexThemeData.light(scheme: FlexScheme.mandyRed),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
       themeMode: ThemeMode.system,
