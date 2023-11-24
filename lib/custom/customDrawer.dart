@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_shopping/custom/customText.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: Icon(
                 Icons.home,
               ),
-              title: Text('Home'),
+              title: CustomText(title: 'Home'),
               onTap: () {
                 Get.toNamed('/home');
               },
@@ -30,7 +31,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: Icon(
                 Icons.login,
               ),
-              title: Text('Login'),
+              title: CustomText(title: 'Login'),
               onTap: () {
                 Get.toNamed('/login');
               },
@@ -39,11 +40,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Card(
             child: ListTile(
               leading: Icon(
+                Icons.supervised_user_circle_sharp,
+              ),
+              title: CustomText(title: 'Cadastrar Usuário'),
+              onTap: () {
+                Get.toNamed('/cadastrarusuario');
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: Icon(
                 Icons.exit_to_app,
               ),
-              title: Text('Sair'),
+              title: CustomText(title: 'Sair'),
               onTap: () {
-                Get.toNamed('/login');
+                Get.toNamed('/login_');
               },
             ),
           ),

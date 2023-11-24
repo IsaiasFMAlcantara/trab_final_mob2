@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:list_shopping/custom/customText.dart';
 
-class Login_ extends StatefulWidget {
-  const Login_({super.key});
+class CadastroDeUsuario_ extends StatefulWidget {
+  const CadastroDeUsuario_({super.key});
 
   @override
-  State<Login_> createState() => _Login_State();
+  State<CadastroDeUsuario_> createState() => _CadastroDeUsuario_State();
 }
 
-class _Login_State extends State<Login_> {
+class _CadastroDeUsuario_State extends State<CadastroDeUsuario_> {
   final _formkey = GlobalKey<FormState>();
 
   bool _formValido = false;
@@ -77,7 +77,6 @@ class _Login_State extends State<Login_> {
                     height: 20,
                   ),
                   TextFormField(
-                    obscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: _senhavalida,
                     decoration: InputDecoration(
@@ -99,25 +98,11 @@ class _Login_State extends State<Login_> {
                   ElevatedButton(
                     onPressed: () {},
                     child: CustomText(
-                      title: 'Login',
+                      title: 'Cadastrar Usuário',
                     ),
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    //Get.toNamed('/criar_usuario');
-                  },
-                  child: Text('Crie sua conta'),
-                )
-              ],
             )
           ],
         ),
