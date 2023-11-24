@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:list_shopping/control/c_firebase.dart';
+import 'package:list_shopping/custom/customText.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -14,7 +16,7 @@ class _HomeState extends State<Home> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Center(
-          child: const Column(
+          child: Column(
             children: [],
           ),
         ),

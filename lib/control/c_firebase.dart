@@ -74,3 +74,18 @@ class CadastrarUsuario {
     }
   }
 }
+
+class ListProdutos {
+  Future<List<Map<String, dynamic>>> listprodutos() async {
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('itens').get();
+    List<Map<String, dynamic>> produtos = [];
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> produtoData = doc.data() as Map<String, dynamic>;
+      produtoData['id'] = doc.id;
+      produtos.add(produtoData);
+    });
+    print(produtos);
+    return produtos;
+  }
+}
