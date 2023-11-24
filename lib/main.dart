@@ -6,6 +6,7 @@ import 'view/homescreen.dart';
 import 'view/login/login.dart';
 import 'view/login/login_.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario.dart';
+import 'view/cadastrodeusuario/cadastrodeusuario_.dart';
 
 void main() {
   runApp(
@@ -20,6 +21,7 @@ void main() {
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/login_', page: () => Login_()),
         GetPage(name: '/cadastrarusuario', page: () => CadastroDeUsuario()),
+        GetPage(name: '/cadastrarusuario_', page: () => CadastroDeUsuario_()),
       ],
     ),
   );

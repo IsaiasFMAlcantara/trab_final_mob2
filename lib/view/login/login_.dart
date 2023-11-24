@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_shopping/custom/customText.dart';
+import 'package:get/get.dart';
 
 class Login_ extends StatefulWidget {
   const Login_({super.key});
@@ -113,7 +114,7 @@ class _Login_State extends State<Login_> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    //Get.toNamed('/criar_usuario');
+                    Get.toNamed('/cadastrarusuario_');
                   },
                   child: Text('Crie sua conta'),
                 )
