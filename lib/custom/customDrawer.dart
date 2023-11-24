@@ -25,6 +25,28 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
             ),
           ),
+          Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.login,
+              ),
+              title: Text('Login'),
+              onTap: () {
+                Get.toNamed('/login');
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.exit_to_app,
+              ),
+              title: Text('Sair'),
+              onTap: () {
+                Get.toNamed('/login');
+              },
+            ),
+          ),
         ],
       ),
     );
