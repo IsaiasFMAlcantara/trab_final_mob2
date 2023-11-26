@@ -21,15 +21,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
           UserAccountsDrawerHeader(
             accountName: Text(_userController.user?.displayName ?? ''),
             accountEmail:
-            Text(_userController.user?.email ?? 'No user logged in'),
+                Text(_userController.user?.email ?? 'No user logged in'),
             currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text(
-                  _userController.user?.email?.isNotEmpty == true
-                      ? _userController.user!.email![0].toUpperCase()
-                      : '/',
-                  style: TextStyle(fontSize: 40.0),
-                )),
+              backgroundColor: Colors.white,
+              child: _userController.user?.email?.isNotEmpty == true
+                  ? Text(
+                      _userController.user!.email!
+                          .substring(0, 1)
+                          .toUpperCase(),
+                      style: TextStyle(fontSize: 40.0),
+                    )
+                  : Image.asset('imagens/logo.png'),
+            ),
           ),
           Card(
             child: ListTile(
