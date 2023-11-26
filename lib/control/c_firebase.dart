@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class UserController extends GetxController {
   Rx<User?> _user = Rx<User?>(null);
   User? get user => _user.value;
@@ -87,5 +86,28 @@ class ListProdutos {
     });
     print(produtos);
     return produtos;
+  }
+}
+
+Future<void> atualizarNomeUsuarioFirebase(
+    String email, String nome, String senha) async {
+  try {
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: senha,
+    );
+
+    User? user = userCredential.user;
+
+    if (user != null) {
+      await user.updateDisplayName(nome);
+    } else {
+      print('Usuário nulo após o login');
+    }
+  } on FirebaseAuthException catch (e) {
+    print('Erro de autenticação: $e');
+  } catch (e) {
+    print('Erro desconhecido: $e');
   }
 }

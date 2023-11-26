@@ -8,7 +8,7 @@ import 'view/homescreen.dart';
 import 'view/login/login.dart';
 import 'view/login/login_.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario.dart';
-import 'view/cadastrodeusuario/cadastrodeusuario_.dart';
+import 'package:list_shopping/view/gerenciarusuario/gerenciarusuario.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ Future<void> main() async {
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/login_', page: () => Login_()),
         GetPage(name: '/cadastrarusuario', page: () => CadastroDeUsuario()),
-        GetPage(name: '/cadastrarusuario_', page: () => CadastroDeUsuario_()),
+        GetPage(name: '/gerenciarconta', page: () => GerenciarUsuario()),
       ],
     ),
   );

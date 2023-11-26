@@ -70,6 +70,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Card(
             child: ListTile(
               leading: Icon(
+                Icons.person,
+              ),
+              title: CustomText(title: 'Gerenciar Conta'),
+              onTap: () {
+                Get.toNamed('/gerenciarconta');
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: Icon(
                 Icons.exit_to_app,
               ),
               title: CustomText(title: 'Sair'),
