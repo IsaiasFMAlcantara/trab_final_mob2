@@ -83,6 +83,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               leading: Icon(
                 Icons.exit_to_app,
               ),
+              title: CustomText(title: 'Itens Base'),
+              onTap: () {
+                Get.toNamed('/listarprodutos');
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.exit_to_app,
+              ),
               title: CustomText(title: 'Sair'),
               onTap: () {
                 deslogarBaseFirebase.deslogar();
