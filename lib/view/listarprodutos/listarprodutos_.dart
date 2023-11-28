@@ -42,48 +42,50 @@ class _ListarProdutos_State extends State<ListarProdutos_> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Form(
-              key: _formkey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: _campovalido,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: _formValido ? Colors.blue : Colors.red),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Form(
+                key: _formkey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _campovalido,
+                      decoration: InputDecoration(
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: _formValido ? Colors.blue : Colors.red),
+                        ),
+                        labelText: "Nome do produto",
                       ),
-                      labelText: "Nome do produto",
+                      onChanged: (value) {
+                        setState(() {
+                          _formValido = value.isNotEmpty;
+                        });
+                      },
+                      validator: _validarEntrada,
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        _formValido = value.isNotEmpty;
-                      });
-                    },
-                    validator: _validarEntrada,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: CustomText(title: 'Cadastrar Item'),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(
-                    child: ListagemdeProdutos(),
-                  ),
-                ],
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: CustomText(title: 'Cadastrar Item'),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Expanded(
+                      child: ListagemdeProdutos(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
