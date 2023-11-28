@@ -58,7 +58,7 @@ class CadastrarUsuario {
 }
 
 class ListProdutos {
-  Future<List<Map<String, dynamic>>> listprodutos() async {
+  listprodutos() async {
     final base = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await base.collection('produtos').get();
     List<Map<String, dynamic>> produtos = [];
@@ -67,7 +67,6 @@ class ListProdutos {
       produtoData['id'] = doc.id;
       produtos.add(produtoData);
     });
-    print(produtos);
     return produtos;
   }
 }
