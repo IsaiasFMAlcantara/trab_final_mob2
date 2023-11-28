@@ -111,3 +111,18 @@ Future<void> atualizarNomeUsuarioFirebase(
     print('Erro desconhecido: $e');
   }
 }
+
+class ListarProdutos {
+  Future<List<Map<String, dynamic>>> listarProdutos() async {
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('produtos').get();
+
+    List<Map<String, dynamic>> produtos = [];
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> produtoData = doc.data() as Map<String, dynamic>;
+      produtoData['id'] = doc.id;
+      produtos.add(produtoData);
+    });
+    return produtos;
+  }
+}
