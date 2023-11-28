@@ -3,7 +3,7 @@ import 'package:list_shopping/control/c_firebase.dart';
 import 'package:list_shopping/custom/customText.dart';
 
 class ListagemdeProdutos extends StatefulWidget {
-  const ListagemdeProdutos({super.key});
+  const ListagemdeProdutos({Key? key}) : super(key: key);
 
   @override
   State<ListagemdeProdutos> createState() => _ListagemdeProdutosState();
@@ -14,10 +14,8 @@ class _ListagemdeProdutosState extends State<ListagemdeProdutos> {
   List<Map<String, dynamic>> produtos = [];
 
   Future<void> _carregarProdutos() async {
-    final produtosData = await produtosListar.listprodutos();
-    setState(() {
-      produtos = produtosData;
-    });
+    produtos = await produtosListar.listprodutos();
+    setState(() {});
   }
 
   @override
