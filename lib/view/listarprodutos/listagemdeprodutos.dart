@@ -10,13 +10,13 @@ class ListagemdeProdutos extends StatefulWidget {
 }
 
 class _ListagemdeProdutosState extends State<ListagemdeProdutos> {
-  final ListarProdutos produtosListar = ListarProdutos();
+  final ListProdutos produtosListar = ListProdutos();
   List<Map<String, dynamic>> produtos = [];
 
   Future<void> _carregarProdutos() async {
-    final salasData = await produtosListar.listarProdutos();
+    final produtosData = await produtosListar.listprodutos();
     setState(() {
-      produtos = salasData;
+      produtos = produtosData;
     });
   }
 

@@ -40,21 +40,6 @@ class DeslogarFirebase {
   }
 }
 
-class FirestoreService {
-  static Future<void> salvarInformacoesUsuario(
-      FirebaseFirestore firestore, String userId, String email) async {
-    try {
-      await firestore.collection('usuarios').doc().set({
-        'user_id': userId,
-        'email': email,
-        'admin': false,
-      });
-    } catch (e) {
-      print('Erro: $e');
-    }
-  }
-}
-
 class CadastrarUsuario {
   final BuildContext context;
   CadastrarUsuario(this.context);
@@ -65,8 +50,6 @@ class CadastrarUsuario {
       final User? user = userCredential.user;
       if (user != null) {
         Get.toNamed('/login_');
-        await FirestoreService.salvarInformacoesUsuario(
-            FirebaseFirestore.instance, user.uid, email);
       }
     } catch (e) {
       print('Erro: $e');
@@ -77,7 +60,7 @@ class CadastrarUsuario {
 class ListProdutos {
   Future<List<Map<String, dynamic>>> listprodutos() async {
     final base = FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot = await base.collection('itens').get();
+    QuerySnapshot querySnapshot = await base.collection('produtos').get();
     List<Map<String, dynamic>> produtos = [];
     querySnapshot.docs.forEach((doc) {
       Map<String, dynamic> produtoData = doc.data() as Map<String, dynamic>;
@@ -97,9 +80,7 @@ Future<void> atualizarNomeUsuarioFirebase(
       email: email,
       password: senha,
     );
-
     User? user = userCredential.user;
-
     if (user != null) {
       await user.updateDisplayName(nome);
     } else {
@@ -109,20 +90,5 @@ Future<void> atualizarNomeUsuarioFirebase(
     print('Erro de autenticação: $e');
   } catch (e) {
     print('Erro desconhecido: $e');
-  }
-}
-
-class ListarProdutos {
-  Future<List<Map<String, dynamic>>> listarProdutos() async {
-    final base = FirebaseFirestore.instance;
-    QuerySnapshot querySnapshot = await base.collection('produtos').get();
-
-    List<Map<String, dynamic>> produtos = [];
-    querySnapshot.docs.forEach((doc) {
-      Map<String, dynamic> produtoData = doc.data() as Map<String, dynamic>;
-      produtoData['id'] = doc.id;
-      produtos.add(produtoData);
-    });
-    return produtos;
   }
 }
