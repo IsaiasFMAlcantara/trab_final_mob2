@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_shopping/view/cadastrarlistacompras/lista.dart';
 import 'package:list_shopping/view/home.dart';
+import 'package:list_shopping/view/listarlistas/listlistas.dart';
 
 class HomeScreen_ extends StatefulWidget {
   const HomeScreen_({super.key});
@@ -20,6 +21,7 @@ class _HomeScreen_State extends State<HomeScreen_> {
           children: [
             Home(),
             CadastrarLista(),
+            Listas(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -34,7 +36,7 @@ class _HomeScreen_State extends State<HomeScreen_> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.add), label: 'Cadastrar Lista'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: 'Favoritas'),
+                icon: Icon(Icons.list_alt), label: 'Listas'),
           ],
         ));
   }

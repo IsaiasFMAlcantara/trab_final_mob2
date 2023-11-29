@@ -106,3 +106,17 @@ class FirestoreService {
     }
   }
 }
+
+class ListListas {
+  listListas() async {
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('listas').get();
+    List<Map<String, dynamic>> listas = [];
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> listasData = doc.data() as Map<String, dynamic>;
+      listasData['id'] = doc.id;
+      listas.add(listasData);
+    });
+    return listas;
+  }
+}
