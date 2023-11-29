@@ -14,9 +14,11 @@ class _ListagemListasState extends State<ListagemListas> {
   List<dynamic> listas = [];
   _carregarListas() async {
     List<Map<String, dynamic>> ListasData = await Listaslist.listListas();
-    setState(() {
-      listas = ListasData[0]['lista'];
-    });
+    setState(
+      () {
+        listas = ListasData[0]['lista'];
+      },
+    );
   }
 
   @override
@@ -35,10 +37,10 @@ class _ListagemListasState extends State<ListagemListas> {
         return Card(
           child: ListTile(
             title: CustomText(
-              title: '${lista['nome']}',
+              title: 'Nome: ${lista['nome']}',
             ),
             subtitle: CustomText(
-              title: '${lista['itens']}',
+              title: 'Criador: ${lista['criador']}',
             ),
           ),
         );
