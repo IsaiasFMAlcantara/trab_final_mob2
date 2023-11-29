@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:list_shopping/custom/customText.dart';
 import 'package:list_shopping/control/c_firebase.dart';
+import 'package:list_shopping/custom/customText.dart';
+import 'package:list_shopping/view/cadastrarprodutos/listagemdeprodutos.dart';
 
 class ListarProdutos_ extends StatefulWidget {
   const ListarProdutos_({Key? key}) : super(key: key);
@@ -13,9 +15,11 @@ class _ListarProdutos_State extends State<ListarProdutos_> {
   final _formkey = GlobalKey<FormState>();
   bool _formValido = false;
   TextEditingController _campovalido = TextEditingController();
+
   void _validacaoFormulario() {
     _formkey.currentState?.validate();
   }
+
   String _validarEntrada(String? mensagem) {
     if (mensagem == null || mensagem.isEmpty) {
       return 'Preencha o campo';
@@ -24,26 +28,30 @@ class _ListarProdutos_State extends State<ListarProdutos_> {
     }
   }
 
-  final ListProdutos produtoslist = ListProdutos();
-  List<dynamic> produtos = [];
-  _carregarProdutos() async {
-    List<Map<String, dynamic>> produtosData = await produtoslist.listprodutos();
-    setState(() {
-      produtos = produtosData[0]['alimentos'];
-    });
-  }
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  String documentId = '3q0ZLSkF4fT2uPDV7ob8';
 
   @override
   void initState() {
     super.initState();
     _campovalido.addListener(_validacaoFormulario);
-    _carregarProdutos();
   }
 
   @override
   void dispose() {
     super.dispose();
     _campovalido.removeListener(_validacaoFormulario);
+  }
+
+  Future<void> _adicionarAlimento() async {
+    String novoAlimento = _campovalido.text;
+
+    try {
+      await FirestoreService.adicionarAlimento(
+          firestore, documentId, novoAlimento);
+    } catch (e) {
+      print('Erro ao adicionar alimento: $e');
+    }
   }
 
   @override
@@ -79,7 +87,7 @@ class _ListarProdutos_State extends State<ListarProdutos_> {
                       height: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _adicionarAlimento,
                       child: CustomText(title: 'Cadastrar Item'),
                     ),
                     SizedBox(
@@ -88,20 +96,7 @@ class _ListarProdutos_State extends State<ListarProdutos_> {
                   ],
                 ),
               ),
-              ListView.builder(
-                itemCount: produtos.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final produto = produtos[index];
-                  return Card(
-                    child: ListTile(
-                      title: CustomText(
-                        title: '${produto['nome']}',
-                      ),
-                    ),
-                  );
-                },
-              ),
+              ListagemdeProdutos(),
             ],
           ),
         ),

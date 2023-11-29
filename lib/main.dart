@@ -9,7 +9,7 @@ import 'view/login/login.dart';
 import 'view/login/login_.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario.dart';
 import 'package:list_shopping/view/gerenciarusuario/gerenciarusuario.dart';
-import 'package:list_shopping/view/listarprodutos/listarprodutos.dart';
+import 'package:list_shopping/view/cadastrarprodutos/listarprodutos.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

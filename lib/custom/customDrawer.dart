@@ -48,6 +48,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Card(
             child: ListTile(
               leading: Icon(
+                Icons.add,
+              ),
+              title: CustomText(title: 'Itens'),
+              onTap: () {
+                Get.toNamed('/listarprodutos');
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: Icon(
                 Icons.login,
               ),
               title: CustomText(title: 'Login'),
@@ -75,17 +86,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
               title: CustomText(title: 'Gerenciar Conta'),
               onTap: () {
                 Get.toNamed('/gerenciarconta');
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: Icon(
-                Icons.add,
-              ),
-              title: CustomText(title: 'Itens'),
-              onTap: () {
-                Get.toNamed('/listarprodutos');
               },
             ),
           ),

@@ -91,3 +91,18 @@ Future<void> atualizarNomeUsuarioFirebase(
     print('Erro desconhecido: $e');
   }
 }
+
+class FirestoreService {
+  static Future<void> adicionarAlimento(FirebaseFirestore firestore,
+      String documentId, String novoAlimento) async {
+    try {
+      await firestore.collection('produtos').doc(documentId).update({
+        'alimentos': FieldValue.arrayUnion([
+          {'nome': novoAlimento},
+        ]),
+      });
+    } catch (e) {
+      print('Erro: $e');
+    }
+  }
+}

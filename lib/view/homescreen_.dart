@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_shopping/view/cadastrarlistacompras/lista.dart';
 import 'package:list_shopping/view/home.dart';
 
 class HomeScreen_ extends StatefulWidget {
@@ -18,6 +19,7 @@ class _HomeScreen_State extends State<HomeScreen_> {
           index: _paginaSelecionada,
           children: [
             Home(),
+            CadastrarLista(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -29,7 +31,8 @@ class _HomeScreen_State extends State<HomeScreen_> {
           },
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Listas'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add), label: 'Cadastrar Lista'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favoritas'),
           ],
