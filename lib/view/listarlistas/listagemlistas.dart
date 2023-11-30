@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:list_shopping/control/c_firebase.dart';
 import 'package:list_shopping/custom/customText.dart';
+import 'package:list_shopping/view/detalheslista/detalheslist.dart';
 
 class ListagemListas extends StatefulWidget {
   const ListagemListas({super.key});
@@ -39,9 +41,11 @@ class _ListagemListasState extends State<ListagemListas> {
             title: CustomText(
               title: 'Nome: ${lista['nome']}',
             ),
-            subtitle: CustomText(
-              title: 'Criador: ${lista['criador']}',
-            ),
+            onTap: () {
+              Get.to(
+                DetalhesList(lista: lista),
+              );
+            },
           ),
         );
       },
