@@ -46,7 +46,7 @@ class _Login_State extends State<Login_> {
     LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
     return Scaffold(
       body: Center(
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
@@ -82,7 +82,29 @@ class _Login_State extends State<Login_> {
                   ),
                   validator: _validateInput,
                 ),
-                SizedBox(height: 20),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed('/esqueciasenha_');
+                      },
+                      child: Text('Esqueci a senha!!'),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed('/cadastrarusuario');
+                      },
+                      child: Text('Crie sua conta'),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
                   onPressed: _formValid
                       ? () {
@@ -93,13 +115,6 @@ class _Login_State extends State<Login_> {
                   child: CustomText(
                     title: 'Login',
                   ),
-                ),
-                SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed('/cadastrarusuario_');
-                  },
-                  child: Text('Crie sua conta'),
                 ),
               ],
             ),

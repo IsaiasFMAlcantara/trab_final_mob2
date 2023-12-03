@@ -31,6 +31,9 @@ class _DetalhesListState extends State<DetalhesList> {
             CustomText(
               title: 'Compartilhamento: ${dadosLista['compartilhamento']}',
             ),
+            CustomText(
+              title: 'Dia da compra: ${dadosLista['dia_compra']}',
+            ),
             dadosLista['itens'].isEmpty
                 ? CustomText(
                     title: 'Lista Vazia',

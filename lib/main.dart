@@ -10,6 +10,8 @@ import 'view/login/login_.dart';
 import 'view/cadastrodeusuario/cadastrodeusuario.dart';
 import 'package:list_shopping/view/gerenciarusuario/gerenciarusuario.dart';
 import 'package:list_shopping/view/cadastrarprodutos/listarprodutos.dart';
+import 'view/cadastrodeusuario/cadastrodeusuario_.dart';
+import 'view/esqueciasenha/esqueciasenha.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +35,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login_', page: () => const Login_()),
         GetPage(
             name: '/cadastrarusuario', page: () => const CadastroDeUsuario()),
+        GetPage(
+            name: '/cadastrarusuario_', page: () => const CadastroDeUsuario_()),
         GetPage(name: '/gerenciarconta', page: () => const GerenciarUsuario()),
         GetPage(name: '/listarprodutos', page: () => const ListarProdutos()),
+        GetPage(name: '/esqueciasenha_', page: () => const EsqueciASenha()),
       ],
     );
   }
