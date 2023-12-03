@@ -13,24 +13,29 @@ import 'package:list_shopping/view/cadastrarprodutos/listarprodutos.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
-    GetMaterialApp(
+    MyApp(),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/login_',
-      theme: FlexThemeData.light(scheme: FlexScheme.mandyRed),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
-      themeMode: ThemeMode.system,
+      theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
       getPages: [
-        GetPage(name: '/home', page: () => HomeScreen()),
-        GetPage(name: '/login', page: () => Login()),
-        GetPage(name: '/login_', page: () => Login_()),
-        GetPage(name: '/cadastrarusuario', page: () => CadastroDeUsuario()),
-        GetPage(name: '/gerenciarconta', page: () => GerenciarUsuario()),
-        GetPage(name: '/listarprodutos', page: () => ListarProdutos()),
+        GetPage(name: '/home', page: () => const HomeScreen()),
+        GetPage(name: '/login', page: () => const Login()),
+        GetPage(name: '/login_', page: () => const Login_()),
+        GetPage(
+            name: '/cadastrarusuario', page: () => const CadastroDeUsuario()),
+        GetPage(name: '/gerenciarconta', page: () => const GerenciarUsuario()),
+        GetPage(name: '/listarprodutos', page: () => const ListarProdutos()),
       ],
-    ),
-  );
+    );
+  }
 }

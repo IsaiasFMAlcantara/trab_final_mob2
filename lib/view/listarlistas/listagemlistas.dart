@@ -5,28 +5,27 @@ import 'package:list_shopping/custom/customText.dart';
 import 'package:list_shopping/view/detalheslista/detalheslist.dart';
 
 class ListagemListas extends StatefulWidget {
-  const ListagemListas({super.key});
+  const ListagemListas({Key? key}) : super(key: key);
 
   @override
   State<ListagemListas> createState() => _ListagemListasState();
 }
 
 class _ListagemListasState extends State<ListagemListas> {
-  final ListListas Listaslist = ListListas();
+  final ListListas listasController = ListListas();
   List<dynamic> listas = [];
-  _carregarListas() async {
-    List<Map<String, dynamic>> ListasData = await Listaslist.listListas();
-    setState(
-      () {
-        listas = ListasData[0]['lista'];
-      },
-    );
-  }
 
   @override
   void initState() {
     super.initState();
     _carregarListas();
+  }
+
+  Future<void> _carregarListas() async {
+    List<Map<String, dynamic>> listasData = await listasController.listListas();
+    setState(() {
+      listas = listasData.isNotEmpty ? listasData[0]['lista'] : [];
+    });
   }
 
   @override

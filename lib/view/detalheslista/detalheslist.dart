@@ -16,6 +16,7 @@ class _DetalhesListState extends State<DetalhesList> {
   @override
   Widget build(BuildContext context) {
     final dadosLista = widget.lista;
+
     return Scaffold(
       appBar: CustomAppBar(
         title: '${widget.lista['nome']}',
@@ -30,22 +31,26 @@ class _DetalhesListState extends State<DetalhesList> {
             CustomText(
               title: 'Compartilhamento: ${dadosLista['compartilhamento']}',
             ),
-            ListView.builder(
-              itemCount: dadosLista['itens'].length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                final item = dadosLista['itens'][index];
-                return Card(
-                  child: ListTile(
-                    title: CustomText(
-                      title: 'Item: ${item['nome']}',
-                    ),
-                    subtitle:
-                        CustomText(title: 'Quantidade: ${item['quantidade']}'),
-                  ),
-                );
-              },
-            )
+            dadosLista['itens'].isEmpty
+                ? CustomText(
+                    title: 'Lista Vazia',
+                  )
+                : ListView.builder(
+                    itemCount: dadosLista['itens'].length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final item = dadosLista['itens'][index];
+                      return Card(
+                        child: ListTile(
+                          title: CustomText(
+                            title: 'Item: ${item['nome']}',
+                          ),
+                          subtitle: CustomText(
+                              title: 'Quantidade: ${item['quantidade']}'),
+                        ),
+                      );
+                    },
+                  )
           ],
         ),
       ),

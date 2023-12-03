@@ -4,128 +4,106 @@ import 'package:list_shopping/custom/customText.dart';
 import 'package:get/get.dart';
 
 class Login_ extends StatefulWidget {
-  const Login_({super.key});
+  const Login_({Key? key}) : super(key: key);
 
   @override
-  State<Login_> createState() => _Login_State();
+  _Login_State createState() => _Login_State();
 }
 
 class _Login_State extends State<Login_> {
-  final _formkey = GlobalKey<FormState>();
-
-  bool _formValido = false;
-  TextEditingController _emailvalido = TextEditingController();
-
-  TextEditingController _senhavalida = TextEditingController();
-
-  void _validacaoFormulario() {
-    _formkey.currentState?.validate();
-  }
-
-  String _validarEntrada(String? mensagem) {
-    if (mensagem == null || mensagem.isEmpty) {
-      return 'Preencha o campo';
-    } else {
-      return 'Campo preenchido';
-    }
-  }
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _formValid = false;
 
   @override
   void initState() {
     super.initState();
-    _emailvalido.addListener(_validacaoFormulario);
-    _senhavalida.addListener(_validacaoFormulario);
+    _emailController.addListener(_validateForm);
+    _passwordController.addListener(_validateForm);
   }
 
   @override
   void dispose() {
+    _emailController.removeListener(_validateForm);
+    _passwordController.removeListener(_validateForm);
     super.dispose();
-    _emailvalido.removeListener(_validacaoFormulario);
-    _senhavalida.removeListener(_validacaoFormulario);
+  }
+
+  void _validateForm() {
+    setState(() {
+      _formValid = _emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
+    });
+  }
+
+  String? _validateInput(String? value) {
+    return value?.isEmpty ?? true ? 'Preencha o campo' : null;
   }
 
   @override
   Widget build(BuildContext context) {
     LogarBaseFirebase logarBaseFirebase = LogarBaseFirebase(context);
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Form(
-              key: _formkey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: _emailvalido,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: _formValido ? Colors.blue : Colors.red),
-                      ),
-                      labelText: "E-mail",
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _formValido = value.isNotEmpty;
-                      });
-                    },
-                    validator: _validarEntrada,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: _senhavalida,
-                    decoration: InputDecoration(
-                      errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: _formValido ? Colors.blue : Colors.red)),
-                      labelText: "Password",
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _formValido = value.isNotEmpty;
-                      });
-                    },
-                    validator: _validarEntrada,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      logarBaseFirebase.logarBase(
-                          _emailvalido.text, _senhavalida.text);
-                    },
-                    child: CustomText(
-                      title: 'Login',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: _formValid ? Colors.blue : Colors.red),
+                    ),
+                    labelText: 'E-mail',
+                  ),
+                  validator: _validateInput,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: _formValid ? Colors.blue : Colors.red),
+                    ),
+                    labelText: 'Password',
+                  ),
+                  validator: _validateInput,
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _formValid
+                      ? () {
+                          logarBaseFirebase.logarBase(
+                              _emailController.text, _passwordController.text);
+                        }
+                      : null,
+                  child: CustomText(
+                    title: 'Login',
+                  ),
+                ),
+                SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
                     Get.toNamed('/cadastrarusuario_');
                   },
                   child: Text('Crie sua conta'),
-                )
+                ),
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

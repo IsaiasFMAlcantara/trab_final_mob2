@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:list_shopping/custom/customText.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -16,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomText(title: title),
+            Text(title),
           ],
         ),
       ),

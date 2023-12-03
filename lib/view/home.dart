@@ -11,16 +11,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late DateTime dataAtual;
+
   @override
   void initState() {
     super.initState();
     dataAtual = DateTime.now();
+    _startTimer();
+  }
+
+  void _startTimer() {
     Timer.periodic(Duration(seconds: 1), (Timer timer) {
       if (mounted) {
-        setState(() {
-          dataAtual = DateTime.now();
-        });
+        _updateDateTime();
       }
+    });
+  }
+
+  void _updateDateTime() {
+    setState(() {
+      dataAtual = DateTime.now();
     });
   }
 
