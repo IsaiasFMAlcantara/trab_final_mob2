@@ -1,12 +1,12 @@
 # Lista de Compras
 ### Requisitos do Aplicativo
 
-[x] Login e Gerenciamento de Usuário
-[x] Cadastrar produtos
-[ ] Duplicar listas
-[x] Telas com listas
-[ ] Cadastro listas
-[ ] Notificações
+- [x] Login e Gerenciamento de Usuário
+- [x] Cadastrar produtos
+- [ ] Duplicar listas
+- [x] Telas com listas
+- [ ] Cadastro listas
+- [ ] Notificações
 
 
 
