@@ -147,3 +147,28 @@ class ListListas {
     return listas;
   }
 }
+
+/*
+class ListListas {
+  final UserController userController = Get.find<UserController>();
+  Future<List<Map<String, dynamic>>> listListas() async {
+    User? user = userController.user;
+    if (user == null) {
+      return [];
+    }
+    final base = FirebaseFirestore.instance;
+    QuerySnapshot querySnapshot = await base.collection('listas').get();
+    List<Map<String, dynamic>> listas = [];
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> listasData = doc.data() as Map<String, dynamic>;
+      if (listasData['lista']['criador'] == user.uid ||
+          (listasData['lista']['compartilhamento'] as List)
+              .contains(user.uid)) {
+        listasData['id'] = doc.id;
+        listas.add(listasData);
+      }
+    });
+    return listas;
+  }
+}
+*/

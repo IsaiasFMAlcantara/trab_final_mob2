@@ -45,6 +45,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
             ),
           ),
+          /*
           Card(
             child: ListTile(
               leading: Icon(
@@ -56,6 +57,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               },
             ),
           ),
+          */
           Card(
             child: ListTile(
               leading: Icon(
