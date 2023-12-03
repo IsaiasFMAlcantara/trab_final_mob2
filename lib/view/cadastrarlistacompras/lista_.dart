@@ -99,6 +99,9 @@ class _CadastrarLista_State extends State<CadastrarLista_> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
