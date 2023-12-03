@@ -33,7 +33,7 @@ class DeslogarFirebase {
   Future<void> deslogar() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Get.toNamed('/login_');
+      Get.offNamed('/login_');
     } catch (e) {
       print('Erro: $e');
     }
@@ -53,6 +53,33 @@ class CadastrarUsuario {
       }
     } catch (e) {
       print('Erro: $e');
+    }
+  }
+}
+
+class RedefinirSenha {
+  final BuildContext context;
+  RedefinirSenha(this.context);
+  Future<void> redefinirsenha(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Get.offNamed('/login_');
+      Get.snackbar(
+        'Redefinição de Senha',
+        'Um e-mail de redefinição foi enviado para $email',
+        duration: Duration(seconds: 5),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      print('Erro: $e');
+      Get.snackbar(
+        'Erro ao Redefinir Senha',
+        'Ocorreu um erro ao enviar o e-mail de redefinição de senha. Por favor, tente novamente.',
+        duration: Duration(seconds: 5),
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+      );
     }
   }
 }

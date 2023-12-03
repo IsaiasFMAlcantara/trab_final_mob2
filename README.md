@@ -1,6 +1,15 @@
 # Lista de Compras
 ### Requisitos do Aplicativo
 
+[x] Login e Gerenciamento de Usuário
+[x] Cadastrar produtos
+[ ] Duplicar listas
+[x] Telas com listas
+[ ] Cadastro listas
+[ ] Notificações
+
+
+
 * **Login e Gerenciamento de Usuário:**
     * O aplicativo deve incluir a funcionalidade de login para os usuários.
     * Deve ser possível convidar outros usuários para compartilhar a lista de compras. Se o usuário convidado não tiver uma conta, um e-mail será enviado para download do aplicativo e criação da conta.

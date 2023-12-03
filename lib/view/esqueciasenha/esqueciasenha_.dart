@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:list_shopping/control/c_firebase.dart';
+import 'package:list_shopping/custom/customText.dart';
 
 class esqueciasenha_ extends StatefulWidget {
-  const esqueciasenha_({super.key});
+  const esqueciasenha_({Key? key}) : super(key: key);
 
   @override
-  State<esqueciasenha_> createState() => _esqueciasenha_State();
+  _esqueciasenha_State createState() => _esqueciasenha_State();
 }
 
 class _esqueciasenha_State extends State<esqueciasenha_> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-
-  bool _formValid = false;
 
   @override
   void initState() {
@@ -22,13 +22,13 @@ class _esqueciasenha_State extends State<esqueciasenha_> {
   @override
   void dispose() {
     _emailController.removeListener(_validateForm);
-
     super.dispose();
   }
 
   void _validateForm() {
     setState(() {
-      _formValid = _emailController.text.isNotEmpty;
+      // Utilizei a função `isEmpty` diretamente, pois ela já retorna um valor booleano
+      _formKey.currentState?.validate();
     });
   }
 
@@ -38,29 +38,55 @@ class _esqueciasenha_State extends State<esqueciasenha_> {
 
   @override
   Widget build(BuildContext context) {
+    RedefinirSenha redefinirSenha = RedefinirSenha(context);
     return Scaffold(
-      body: Column(
-        children: [
-          Form(
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Form(
             key: _formKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                CustomText(
+                  title: 'Informe o e-mail que será recuperada a senha',
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: _emailController,
                   decoration: InputDecoration(
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: _formValid ? Colors.blue : Colors.red),
+                        color: _formKey.currentState?.validate() == null
+                            ? Colors.blue
+                            : Colors.red,
+                      ),
                     ),
                     labelText: 'E-mail',
                   ),
                   validator: _validateInput,
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  child: Text('Enviar'),
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      redefinirSenha.redefinirsenha(
+                        _emailController.text,
+                      );
+                    }
+                  },
+                ),
               ],
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
