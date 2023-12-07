@@ -15,9 +15,10 @@ class _CadastrarLista_State extends State<CadastrarLista_> {
   bool _formValid = false;
   TextEditingController _nomeLista = TextEditingController();
   List<ItemDeCompra> _itens = [];
+  final DateTime now = DateTime.now();
+  late DateTime dateSelection;
 
-  void _validateForm() {
-  }
+  void _validateForm() {}
 
   String _validarEntrada(String? mensagem) {
     return mensagem ?? '';
@@ -66,32 +67,93 @@ class _CadastrarLista_State extends State<CadastrarLista_> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Text('Cadastrar lista'),
-              SizedBox(height: 20),
               Form(
                 key: _formKey,
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: _nomeLista,
-                  decoration: InputDecoration(
-                    errorStyle:
-                    TextStyle(color: _formValid ? Colors.blue : Colors.red),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: _formValid ? Colors.blue : Colors.red,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _nomeLista,
+                      decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                            color: _formValid ? Colors.blue : Colors.red),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _formValid ? Colors.blue : Colors.red,
+                          ),
+                        ),
+                        labelText: "Nome lista",
                       ),
+                      onChanged: (value) {
+                        setState(() {
+                          _formValid = value.isNotEmpty;
+                        });
+                      },
+                      validator: _validarEntrada,
                     ),
-                    labelText: "Nome lista",
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _formValid = value.isNotEmpty;
-                    });
-                  },
-                  validator: _validarEntrada,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _nomeLista,
+                      onTap: () async {
+                        dateSelection = (await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1980),
+                          lastDate: DateTime(DateTime.now().year + 1),
+                        ))!;
+                      },
+                      decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                            color: _formValid ? Colors.blue : Colors.red),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _formValid ? Colors.blue : Colors.red,
+                          ),
+                        ),
+                        labelText: "Data da compra",
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _formValid = value.isNotEmpty;
+                        });
+                      },
+                      validator: _validarEntrada,
+
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: _nomeLista,
+                      decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                            color: _formValid ? Colors.blue : Colors.red),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: _formValid ? Colors.blue : Colors.red,
+                          ),
+                        ),
+                        labelText: "Compartilhar",
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _formValid = value.isNotEmpty;
+                        });
+                      },
+                      validator: _validarEntrada,
+                    ),
+
+                  ],
                 ),
               ),
-              SizedBox(height: 20),
+              const Divider(),
+              SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: _itens.length,
