@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/login',
       theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
       getPages: [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:list_shopping/view/cadastrarlistacompras/lista.dart';
+import 'package:list_shopping/view/cadastrarlistas/cadLista.dart';
 import 'package:list_shopping/view/home.dart';
 import 'package:list_shopping/view/listarlistas/listlistas.dart';
 
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen_> {
         index: _paginaSelecionada,
         children: [
           Home(),
-          CadastrarLista(),
+          CadastrarListaN(),
           Listas(),
         ],
       ),

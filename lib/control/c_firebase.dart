@@ -148,6 +148,19 @@ class ListListas {
   }
 }
 
+class ListaDeCompras {
+  String nomeLista;
+  List<ItemDeCompra> itens;
+  ListaDeCompras(this.nomeLista, this.itens);
+}
+
+class ItemDeCompra {
+  String nome;
+  int quantidade;
+  ItemDeCompra(this.nome, this.quantidade);
+}
+
+
 /*
 class ListListas {
   final UserController userController = Get.find<UserController>();
