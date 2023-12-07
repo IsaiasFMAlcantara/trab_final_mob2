@@ -5,7 +5,7 @@
 - [x] Cadastrar produtos
 - [ ] Duplicar listas
 - [x] Telas com listas
-- [ ] Cadastro listas
+- [x] Cadastro listas
 - [ ] Notificações
 
 
